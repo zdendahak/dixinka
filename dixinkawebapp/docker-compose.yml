@@ -1,0 +1,23 @@
+version: '1'
+
+services:
+
+  mysql-development:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: docker
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    ports:
+      - "3306:3306"
+
+
+  postgre-development:
+    image: postgres:12.6
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: docker
+    ports:
+      - "5432:5432"
