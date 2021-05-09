@@ -3,7 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/docker
     username: docker
     password: docker
-    platform: mysql
+    platform: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
