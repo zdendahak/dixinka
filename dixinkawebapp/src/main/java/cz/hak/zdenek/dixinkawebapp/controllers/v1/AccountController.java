@@ -4,10 +4,7 @@ import cz.hak.zdenek.dixinkawebapp.api.v1.model.AccountDTO;
 import cz.hak.zdenek.dixinkawebapp.api.v1.model.AccountListDTO;
 import cz.hak.zdenek.dixinkawebapp.services.AccountService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,10 @@ public class AccountController {
         return new AccountListDTO(accountService.getAllAccounts());
     }
 
-
+    @GetMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public AccountDTO getAccountById(@PathVariable Long id){
+        return accountService.getAccountById(id);
+    }
 
 }

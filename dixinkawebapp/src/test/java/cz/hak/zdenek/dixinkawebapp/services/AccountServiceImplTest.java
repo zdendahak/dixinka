@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -69,6 +70,23 @@ public class AccountServiceImplTest {
 
         //then
         assertEquals(2, accountDTOS.size());
+    }
+
+    @Test
+    public void getAccountById() throws Exception {
+        //given
+        Account account1 = new Account();
+        account1.setId(ID_1);
+        account1.setName(NAME_1);
+        account1.setSurname(SURNAME_1);
+
+        when(accountRepository.findById(anyLong())).thenReturn(java.util.Optional.ofNullable(account1));
+
+        //when
+        AccountDTO accountDTO = accountService.getAccountById(ID_1);
+
+        assertEquals(NAME_1, accountDTO.getName());
+        assertEquals(SURNAME_1, accountDTO.getSurname());
     }
 
     private Account getAccount1() {

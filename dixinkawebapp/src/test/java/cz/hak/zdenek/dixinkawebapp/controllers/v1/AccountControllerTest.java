@@ -16,7 +16,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,5 +71,22 @@ public class AccountControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accounts", hasSize(2)));
+    }
+
+    @Test
+    public void testGetAccountById() throws Exception {
+
+        //given
+        AccountDTO account1 = new AccountDTO();
+        account1.setName("Michale");
+        account1.setSurname("Weston");
+
+        when(accountService.getAccountById(anyLong())).thenReturn(account1);
+
+        //when
+        mockMvc.perform(get(AccountController.BASE_URL + "/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", equalTo("Michale")));
     }
 }

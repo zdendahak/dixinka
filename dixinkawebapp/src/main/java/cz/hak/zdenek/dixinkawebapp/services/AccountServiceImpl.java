@@ -29,4 +29,11 @@ public class AccountServiceImpl implements AccountService{
                 .map(accountMapper::accountToAccountDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public AccountDTO getAccountById(Long id) {
+        return accountRepository.findById(id)
+                .map(accountMapper::accountToAccountDTO)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
 }
