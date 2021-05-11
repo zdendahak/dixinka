@@ -29,11 +29,11 @@ localhost 3306 docker docker docker
         -d  \
         mysql:8
 
-H2
+H2 \
 http://localhost:8080/h2-console
 
 # API
-spring fox - swagger
-http://localhost:8080/v2/api-docs
+spring fox - swagger \
+http://localhost:8080/v2/api-docs \
 http://localhost:8080/swagger-ui.html
 
