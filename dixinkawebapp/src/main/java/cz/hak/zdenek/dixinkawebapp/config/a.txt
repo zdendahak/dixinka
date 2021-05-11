@@ -1,0 +1,29 @@
+/Users/zdenekhak/dixinka/dixinkawebapp/src/main/java/cz/hak/zdenek/dixinkawebapp/api/v1/mapper/AccountMapper.
+java:9:8
+java: Internal error in the mapping processor: java.lang.NullPointerException
+at org.mapstruct.ap.internal.processor.DefaultVersionInformation.createManifestUrl(DefaultVersionInformation.java:182)
+  	at org.mapstruct.ap.internal.processor.DefaultVersionInformation.openManifest(DefaultVersionInformation.java:153)
+  	at org.mapstruct.ap.internal.processor.DefaultVersionInformation.getLibraryName(DefaultVersionInformation.java:129)
+  	  	at org.mapstruct.ap.internal.processor.DefaultVersionInformation.getCompiler(DefaultVersionInformation.java:122)
+  	  	  	at org.mapstruct.ap.internal.processor.DefaultVersionInformation.fromProcessingEnvironment(
+  	  	  	DefaultVersionInformation.java:95)  	at org.mapstruct.ap.internal.processor.DefaultModelElementProcessor
+  	  	  	Context.<init>(DefaultModelElementProcessorContext.java:50)
+  	  	  	at org.mapstruct.ap.MappingProcessor.processMapperElements(MappingProcessor.java:218)
+  	  	  		at org.mapstruct.ap.MappingProcessor.process(MappingProcessor.java:156)
+  	  	  		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  	  	  		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+  	  	  			at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Del
+  	  	  			egatingMethodAccessorImpl.java:43)
+  	  	  			at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+  	  	  				at org.jetbrains.jps.javac.APIWrappers$1.invoke(APIWrappers.java:255)
+  	  	  				at lombok.launch.AnnotationProcessorHider$AnnotationProcessor.process(Unknown Source)
+  	  	  					at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment.callP
+  	  	  					rocessor(JavacProcessingEnvironment.java:980)  	at jdk.compiler/com.sun.tools.ja
+  	  	  					vac.processing.JavacProcessingEnvironment.discoverAndRunProcs(JavacProcessingEn
+  	  	  					vironment.java:896)  	at jdk.compiler/com.sun.tools.javac.processin
+  	  	  					g.JavacProcessingEnvironment$Round.run(JavacProcessingEnvironment.java:1222)
+  	  	  					at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment.doP
+  	  	  					rocessing(JavacProcessingEnvironment.java:1334)  	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.processAnnotations(JavaCompiler.java:1258)  	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.compile(JavaCompiler.java:936)  	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.lambda$doCall$0(JavacTaskImpl.java:104)  	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.handleExceptions(JavacTaskImpl.java:147)  	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.doCall(JavacTaskImpl.java:100)  	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.call(JavacTaskImpl.java:94)  	at org.jetbrains.jps.javac.JavacMain.compile(JavacMain.java:231)  	at org.jetbrains.jps.incremental.java.JavaBuilder.lambda$compileJava$2(JavaBuilder.java:514)  	at org.jetbrains.jps.incremental.java.JavaBuilder.invokeJavac(JavaBuilder.java:560)  	at org.jetbrains.jps.incremental.java.JavaBuilder.compileJava(JavaBuilder.java:512)  	at org.jetbrains.jps.incremental.java.JavaBuilder.compile(JavaBuilder.java:355)  	at org.jetbrains.jps.incremental.java.JavaBuilder.doBuild(JavaBuilder.java:280)  	at org.jetbrains.jps.incremental.java.JavaBuilder.build(JavaBuilder.java:234)  	at org.jetbrains.jps.incremental.IncProjectBuilder.runModuleLevelBuilders(IncProjectBuilder.java:1464)  	at org.jetbrains.jps.incremental.IncProjectBuilder.runBuildersForChunk(IncProjectBuilder.java:1101)  	at org.jetbrains.jps.incremental.IncProjectBuilder.buildTargetsChunk(IncProjectBuilder.java:1247)  	at org.jetbrains.jps.incremental.IncProjectBuilder.buildChunkIfAffected(IncProjectBuilder.java:1066)  	at org.jetbrains.jps.incremental.IncProjectBuilder.buildChunks(IncProjectBuilder.java:832)  	at org.jetbrains.jps.incremental.IncProjectBuilder.runBuild(IncProjectBuilder.java:419)  	at org.jetbrains.jps.incremental.IncProjectBuilder.build(IncProjectBuilder.java:183)  	at org.jetbrains.jps.cmdline.BuildRunner.runBuild(BuildRunner.java:132)  	at org.jetbrains.jps.cmdline.BuildSession.runBuild(BuildSession.java:301)  	at org.jetbrains.jps.cmdline.BuildSession.run(BuildSession.java:132)  	at org.jetbrains.jps.cmdline.BuildMain$MyMessageHandler.lambda$channelRead0$0(BuildMain.java:219)  	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)  	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)  	at java.base/java.lang.Thread.run(Thread.java:829)
+
+
+  	  	  					https://stackoverflow.com/questions/47109827/mapstruct-mapper-annotation-dont-create-bean

@@ -26,4 +26,7 @@ public class Account {
             joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "hobby_id"))
     private Set<Hobby> hobbies = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    private Set<Animal> animals = new HashSet<>();
 }
