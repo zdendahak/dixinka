@@ -2,6 +2,7 @@ package cz.hak.zdenek.dixinkawebapp.services;
 
 import cz.hak.zdenek.dixinkawebapp.api.v1.mapper.AccountMapper;
 import cz.hak.zdenek.dixinkawebapp.api.v1.model.AccountDTO;
+import cz.hak.zdenek.dixinkawebapp.domain.Account;
 import cz.hak.zdenek.dixinkawebapp.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,18 @@ public class AccountServiceImpl implements AccountService{
         return accountRepository.findById(id)
                 .map(accountMapper::accountToAccountDTO)
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public AccountDTO createNewAccount(AccountDTO accountDTO) {
+        return saveAndReturnDTO(accountMapper.accountDtoToAccount(accountDTO));
+    }
+
+    private AccountDTO saveAndReturnDTO(Account account) {
+        Account savedAccount = accountRepository.save(account);
+
+        AccountDTO returnDto = accountMapper.accountToAccountDTO(savedAccount);
+
+        return returnDto;
     }
 }

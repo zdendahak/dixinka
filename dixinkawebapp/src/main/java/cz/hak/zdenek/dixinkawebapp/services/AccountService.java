@@ -8,4 +8,6 @@ public interface AccountService {
     List<AccountDTO> getAllAccounts();
 
     AccountDTO getAccountById(Long id);
+
+    AccountDTO createNewAccount(AccountDTO accountDTO);
 }

@@ -32,4 +32,10 @@ public class AccountController {
         return accountService.getAccountById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AccountDTO createNewAccount(@RequestBody AccountDTO accountDTO){
+        return accountService.createNewAccount(accountDTO);
+    }
+
 }

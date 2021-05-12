@@ -11,4 +11,6 @@ public interface AccountMapper {
     AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
 
     AccountDTO accountToAccountDTO(Account account);
+
+    Account accountDtoToAccount(AccountDTO accountDTO);
 }

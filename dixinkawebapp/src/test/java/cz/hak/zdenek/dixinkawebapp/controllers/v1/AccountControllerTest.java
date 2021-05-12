@@ -19,13 +19,13 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AccountControllerTest {
+public class AccountControllerTest extends AbstractRestControllerTest {
 
     public static final String NAME_1 = "Alice";
     public static final String SURNAME_1 = "My Surname 1";
@@ -89,4 +89,29 @@ public class AccountControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo("Michale")));
     }
+
+    @Test
+    public void createNewAccount() throws Exception {
+        //given
+        AccountDTO accountDTO = new AccountDTO();
+        accountDTO.setName(NAME_1);
+        accountDTO.setSurname(SURNAME_1);
+
+        AccountDTO returnDTO = new AccountDTO();
+        returnDTO.setName(NAME_1);
+        returnDTO.setSurname(SURNAME_1);
+
+        when(accountService.createNewAccount(accountDTO)).thenReturn(returnDTO);
+
+        //when/then
+        mockMvc.perform(post(AccountController.BASE_URL)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(asJsonString(accountDTO)))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.name", equalTo(NAME_1)))
+        .andExpect(jsonPath("$.surname", equalTo(SURNAME_1)));
+
+    }
+
+
 }
