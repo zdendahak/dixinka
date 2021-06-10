@@ -38,4 +38,17 @@ public class AccountController {
         return accountService.createNewAccount(accountDTO);
     }
 
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public AccountDTO updateAccount(@PathVariable Long id, @RequestBody AccountDTO accountDTO){
+        return accountService.saveAccountByDTO(id, accountDTO);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public AccountDTO patchAccount(@PathVariable Long id, @RequestBody CustomerDTO customerDTO){
+        return accountService.patchAccount(id, customerDTO);
+    }
+
+
 }

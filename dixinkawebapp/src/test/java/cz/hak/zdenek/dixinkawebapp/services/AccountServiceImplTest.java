@@ -111,6 +111,27 @@ public class AccountServiceImplTest {
         assertEquals(accountDTO.getName(), savedDto.getName());
     }
 
+    @Test
+    public void saveAccountByDTO() throws Exception {
+
+        //given
+        AccountDTO accountDTO = new AccountDTO();
+        accountDTO.setName("Nada");
+
+        Account savedAccount = new Account();
+        savedAccount.setName(accountDTO.getName());
+        savedAccount.setSurname(accountDTO.getSurname());
+        savedAccount.setId(1l);
+
+        when(accountRepository.save(any(Account.class))).thenReturn(savedAccount);
+
+        //when
+        AccountDTO savedDto = accountService.saveAccountByDTO(1L, accountDTO);
+
+        //then
+        assertEquals(accountDTO.getName(), savedDto.getName());
+    }
+
     private Account getAccount1() {
         Account account = new Account();
         account.setName(NAME_1);

@@ -10,4 +10,8 @@ public interface AccountService {
     AccountDTO getAccountById(Long id);
 
     AccountDTO createNewAccount(AccountDTO accountDTO);
+
+    AccountDTO saveAccountByDTO(Long id, AccountDTO accountDTO);
+
+    AccountDTO patchAccount(Long id, AccountDTO accountDTO);
 }
