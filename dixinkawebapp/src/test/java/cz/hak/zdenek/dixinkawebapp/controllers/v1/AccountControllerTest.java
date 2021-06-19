@@ -20,8 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -111,6 +110,28 @@ public class AccountControllerTest extends AbstractRestControllerTest {
         .andExpect(jsonPath("$.name", equalTo(NAME_1)))
         .andExpect(jsonPath("$.surname", equalTo(SURNAME_1)));
 
+    }
+
+    @Test
+    public void testUpdateAccount() throws Exception {
+        //given
+        AccountDTO account = new AccountDTO();
+        account.setName("Timo");
+        account.setSurname("Boll");
+
+        AccountDTO returnDTO = new AccountDTO();
+        returnDTO.setName(account.getName());
+        returnDTO.setSurname(account.getSurname());
+
+        when(accountService.saveAccountByDTO(anyLong(), any(AccountDTO.class))).thenReturn(returnDTO);
+
+        //when/then
+        mockMvc.perform(put(AccountController.BASE_URL + "/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(account)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", equalTo("Timo")))
+                .andExpect(jsonPath("$.surname", equalTo("Boll")));
     }
 
 

@@ -43,6 +43,34 @@ public class AccountServiceImpl implements AccountService{
         return saveAndReturnDTO(accountMapper.accountDtoToAccount(accountDTO));
     }
 
+    @Override
+    public AccountDTO saveAccountByDTO(Long id, AccountDTO accountDTO) {
+        Account account = accountMapper.accountDtoToAccount(accountDTO);
+        account.setId(id);
+
+        return saveAndReturnDTO(account) ;
+    }
+
+    @Override
+    public AccountDTO patchAccount(Long id, AccountDTO accountDTO) {
+        return accountRepository.findById(id).map(account -> {
+
+            if(accountDTO.getName() != null){
+                account.setName(accountDTO.getName());
+            }
+
+            if(accountDTO.getSurname() != null){
+                account.setName(accountDTO.getSurname());
+            }
+
+            AccountDTO returnDto = accountMapper.accountToAccountDTO(accountRepository.save(account));
+
+
+            return returnDto;
+
+        }).orElseThrow(ResourceNotFoundException::new);
+    }
+
     private AccountDTO saveAndReturnDTO(Account account) {
         Account savedAccount = accountRepository.save(account);
 
